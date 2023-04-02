@@ -1,0 +1,12 @@
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/dto/param/BbsListParam.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/controller/BbsController.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/BackendApplication.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/service/BbsService.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/dto/param/PageParam.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/dto/param/BbsCountParam.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/domain/Bbs.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/dto/response/BbsListResponse.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/dao/BbsDao.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/config/DatabaseConfig.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/config/WebConfig.java
+/Users/jaewoo/Desktop/workspace/board/backend/board-backend/src/main/java/com/demo/bbs/board/dto/request/BbsListRequest.java
