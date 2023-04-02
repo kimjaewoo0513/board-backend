@@ -25,7 +25,6 @@ import com.demo.bbs.board.dto.response.DeleteBbsResponse;
 import com.demo.bbs.board.dto.response.UpdateBbsResponse;
 import com.demo.bbs.board.service.BbsService;
 
-@CrossOrigin(origins="*")// ???
 @RestController
 @RequestMapping("/bbs")
 public class BbsController {
