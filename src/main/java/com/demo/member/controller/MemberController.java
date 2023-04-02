@@ -28,6 +28,8 @@ public class MemberController {
 		
 		HttpStatus status = service.checkIdDuplicate(id);
 		
+		// commit test.
+		
 		return new ResponseEntity<>(status);
 		
 	}
