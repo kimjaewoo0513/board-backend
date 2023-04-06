@@ -10,5 +10,9 @@
 		FROM member
 		WHERE id=#{id}
 	</select>
+	
+	<insert id="createMember" parameterType="com.demo.member.dto.param.CreateMemberParam">
+		INSERT INTO member VALUES(	#{id},#{pwd},#{name},#{email}	);
+	</insert>
 
 </mapper>

@@ -32,7 +32,6 @@ public class MemberController {
 	@GetMapping
 	public ResponseEntity<?> checkIdDuplicate(@RequestParam String id) {
 		System.out.println("UserController checkIdDuplicate " + new Date());
-
 		HttpStatus status = service.checkIdDuplicate(id);
 		return new ResponseEntity<>(status);
 	}
@@ -41,9 +40,8 @@ public class MemberController {
 	// 회원가입
 	@PostMapping("/join")
 	public ResponseEntity<JoinResponse> join (@Valid @RequestBody JoinRequest req){
-		
+		System.out.println("UserController join " + new Date());
 		return ResponseEntity.ok(service.join(req));
-		
 	}
 
 }
