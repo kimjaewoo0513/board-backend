@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.demo.bbs.member.dao.MemberDao">
+<mapper namespace="com.demo.member.dao.MemberDao">
 	
 	<select id="isExistUserId" parameterType="String" resultType="java.lang.Integer">
 		SELECT count(*)

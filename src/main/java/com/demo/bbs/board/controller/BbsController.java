@@ -2,7 +2,6 @@ package com.demo.bbs.board.controller;
 
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,12 +24,16 @@ import com.demo.bbs.board.dto.response.DeleteBbsResponse;
 import com.demo.bbs.board.dto.response.UpdateBbsResponse;
 import com.demo.bbs.board.service.BbsService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/bbs")
 public class BbsController {
 	
-	@Autowired
-	private BbsService service;
+	private final BbsService service;
+
+	public BbsController(BbsService service) {
+		this.service = service;
+	}
 	
 	/* [GET /bbs?choice={choice}&search={search}&page={page}] 게시글 목록 API */
 	@GetMapping
