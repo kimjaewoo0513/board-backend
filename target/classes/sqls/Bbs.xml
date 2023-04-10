@@ -3,11 +3,11 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.demo.bbs.board.dao.BbsDao">
+<mapper namespace="com.demo.bbs.dao.BbsDao">
 
 	<!-- 글 목록 조회 -->
-	<select id="getBbsSearchPageList" parameterType="com.demo.bbs.board.dto.param.BbsListParam"
-		resultType="com.demo.bbs.board.domain.Bbs">
+	<select id="getBbsSearchPageList" parameterType="com.demo.bbs.dto.param.BbsListParam"
+		resultType="com.demo.bbs.domain.Bbs">
 		SELECT seq
 			  ,id
 			  ,ref
@@ -48,7 +48,7 @@
 	</select>
 
 	<!-- 글 총 개수 조회 -->
-	<select id="getBbsCount" parameterType="com.demo.bbs.board.dto.param.BbsCountParam" resultType="Integer">
+	<select id="getBbsCount" parameterType="com.demo.bbs.dto.param.BbsCountParam" resultType="Integer">
 
 		SELECT ifnull(count(*), 0)
 		FROM bbs
@@ -66,7 +66,7 @@
 	</select>
 	
 	<!-- 특정 게시글 조회 -->
-	<select id="getBbs" parameterType="Integer" resultType="com.demo.bbs.board.domain.Bbs">
+	<select id="getBbs" parameterType="Integer" resultType="com.demo.bbs.domain.Bbs">
 		SELECT 
 				seq
 				,id
@@ -84,13 +84,13 @@
 	</select>
 	
 	<!-- 게시글 작성 -->
-	<insert id="createBbs" parameterType="com.demo.bbs.board.dto.param.CreateBbsParam" useGeneratedKeys="true" keyProperty="seq">
+	<insert id="createBbs" parameterType="com.demo.bbs.dto.param.CreateBbsParam" useGeneratedKeys="true" keyProperty="seq">
 		INSERT bbs (id, ref, step, depth, title, content, created_at, del, read_count)
 		VALUES ("admin", (SELECT ifnull(max(ref), 0)+1 from bbs b), 0, 0, #{title}, #{content}, NOW(), 0, 0)
 	</insert>
 	
 	<!-- 게시글 수정 -->
-	<update id="updateBbs" parameterType="com.demo.bbs.board.dto.param.UpdateBbsParam">
+	<update id="updateBbs" parameterType="com.demo.bbs.dto.param.UpdateBbsParam">
 		UPDATE bbs
 		SET title = #{title}, content = #{content}
 		where seq = #{seq}
