@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,7 @@ import com.demo.member.dao.MemberDao;
 import com.demo.member.dto.param.CreateMemberParam;
 import com.demo.member.dto.request.JoinRequest;
 import com.demo.member.dto.response.JoinResponse;
+import com.demo.member.dto.response.LoginResponse;
 import com.demo.member.exception.MemberException;
 
 @Service
@@ -22,6 +25,12 @@ public class MemberService {
 	private MemberDao dao;
 	@Autowired
 	private PasswordEncoder encoder;
+	@Autowired
+	private final AuthenticationManager authenticationManager;
+	@Autowired
+	private final JwtTokenUtil jwtTokenUtil;
+	@Autowired
+	private final UserDetailsService userDetailsService;
 	
 	public HttpStatus checkIdDuplicate (String id) {
 		isExistUserId(id);
@@ -66,6 +75,11 @@ public class MemberService {
 		if (result == 1) {
 			throw new MemberException("이미 사용중인 아이디입니다.", HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	public LoginResponse login(@Valid JoinRequest req) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

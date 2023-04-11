@@ -36,12 +36,18 @@ public class MemberController {
 		return new ResponseEntity<>(status);
 	}
 	
-	
-	// 회원가입
 	@PostMapping("/join")
 	public ResponseEntity<JoinResponse> join (@Valid @RequestBody JoinRequest req){
 		System.out.println("UserController join " + new Date());
 		return ResponseEntity.ok(service.join(req));
 	}
-
+	
+	@PostMapping("/login")
+	public ResponseEntity<JoinResponse> login (@Valid @RequestBody JoinRequest req){
+		System.out.println("UserController login " + new Date());
+		return ResponseEntity.ok(service.login(req));
+	}
+	
+	
+	
 }
