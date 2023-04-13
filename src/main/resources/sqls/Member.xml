@@ -14,5 +14,11 @@
 	<insert id="createMember" parameterType="com.demo.member.dto.param.CreateMemberParam">
 		INSERT INTO member VALUES(	#{id},#{pwd},#{name},#{email}	);
 	</insert>
+	
+	<select id="findById" parameterType="String" resultType="com.demo.member.domain.Member">
+		SELECT id, name, pwd, email
+		FROM member
+		WHERE id=#{id}
+	</select>
 
 </mapper>

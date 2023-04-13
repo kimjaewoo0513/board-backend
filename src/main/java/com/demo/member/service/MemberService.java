@@ -5,14 +5,20 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.jwt.JwtTokenUtil;
 import com.demo.member.dao.MemberDao;
 import com.demo.member.dto.param.CreateMemberParam;
 import com.demo.member.dto.request.JoinRequest;
+import com.demo.member.dto.request.LoginRequest;
 import com.demo.member.dto.response.JoinResponse;
 import com.demo.member.dto.response.LoginResponse;
 import com.demo.member.exception.MemberException;
@@ -26,11 +32,11 @@ public class MemberService {
 	@Autowired
 	private PasswordEncoder encoder;
 	@Autowired
-	private final AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 	@Autowired
-	private final JwtTokenUtil jwtTokenUtil;
+	private JwtTokenUtil jwtTokenUtil;
 	@Autowired
-	private final UserDetailsService userDetailsService;
+	private UserDetailsService userDetailsService;
 	
 	public HttpStatus checkIdDuplicate (String id) {
 		isExistUserId(id);
@@ -77,9 +83,24 @@ public class MemberService {
 		}
 	}
 
-	public LoginResponse login(@Valid JoinRequest req) {
-		// TODO Auto-generated method stub
-		return null;
+	public LoginResponse login(@Valid LoginRequest req) {
+		
+		authenticate(req.getId(), req.getPwd());
+		
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(req.getId());
+		final String token = jwtTokenUtil.generateToken(userDetails);
+
+		return new LoginResponse(token, req.getId());
+	}
+
+	private void authenticate(String id, String pwd) {
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(id, pwd));
+		} catch (DisabledException e) {
+			throw new MemberException("인증되지 않은 아이디입니다.", HttpStatus.BAD_REQUEST);
+		} catch (BadCredentialsException e) {
+			throw new MemberException("비밀번호가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	

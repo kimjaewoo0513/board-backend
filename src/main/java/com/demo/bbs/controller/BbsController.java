@@ -3,7 +3,6 @@ package com.demo.bbs.controller;
 import java.util.Date;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,7 +23,6 @@ import com.demo.bbs.dto.response.DeleteBbsResponse;
 import com.demo.bbs.dto.response.UpdateBbsResponse;
 import com.demo.bbs.service.BbsService;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/bbs")
 public class BbsController {
