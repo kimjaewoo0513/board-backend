@@ -7,13 +7,16 @@ import org.springframework.stereotype.Repository;
 
 import com.demo.comment.domain.Comment;
 import com.demo.comment.dto.param.CommentListParam;
+import com.demo.comment.dto.param.CreateCommentParam;
 
 @Mapper
 @Repository
 public interface CommentDao {
 	
-	 List<Comment> getCommentPageList(CommentListParam param);
-	 Integer getCommentCount(Integer seq);
+	List<Comment> getCommentPageList(CommentListParam param);
+	
+	Integer getCommentCount(Integer seq);
 
+	void createComment(CreateCommentParam param);
 
 }
