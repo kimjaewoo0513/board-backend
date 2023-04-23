@@ -34,4 +34,12 @@
 		
 	</insert>
 
+	<!-- 댓글 삭제 -->
+	<update id="deleteComment" parameterType="Integer">
+		UPDATE comment
+		SET del = 1
+		WHERE seq = #{seq}
+	</update>
+	
+	
 </mapper>

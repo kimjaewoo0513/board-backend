@@ -19,4 +19,6 @@ public interface CommentDao {
 
 	void createComment(CreateCommentParam param);
 
+	Integer deleteComment(Integer seq);
+
 }

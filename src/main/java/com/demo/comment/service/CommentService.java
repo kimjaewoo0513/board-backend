@@ -9,6 +9,7 @@ import com.demo.comment.dao.CommentDao;
 import com.demo.comment.domain.Comment;
 import com.demo.comment.dto.param.CommentListParam;
 import com.demo.comment.dto.param.CreateCommentParam;
+import com.demo.comment.dto.param.DeleteCommentResponse;
 import com.demo.comment.dto.request.CommentRequest;
 import com.demo.comment.dto.request.CreateCommentRequest;
 import com.demo.comment.dto.response.CommentResponse;
@@ -36,10 +37,17 @@ public class CommentService {
 	public CreateCommentResponse createComment(Integer seq, CreateCommentRequest req) {
 		
 		CreateCommentParam param = new CreateCommentParam(seq, req);
-		
 		dao.createComment(param);
 		
 		return new CreateCommentResponse(param.getSeq());
+	}
+
+	/* 댓글 삭제 */
+	public DeleteCommentResponse deleteComment(Integer seq) {
+		
+		Integer deletedRecordCount = dao.deleteComment(seq);
+		
+		return new DeleteCommentResponse(deletedRecordCount);
 	}
 	
 	

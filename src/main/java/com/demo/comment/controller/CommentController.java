@@ -5,13 +5,16 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.demo.comment.dto.param.DeleteCommentResponse;
 import com.demo.comment.dto.request.CommentRequest;
 import com.demo.comment.dto.request.CreateCommentRequest;
 import com.demo.comment.dto.response.CommentResponse;
@@ -42,5 +45,11 @@ public class CommentController {
         return ResponseEntity.ok(service.createComment(bbsSeq, req));
     }
 
-	
+    /* [DELETE] /comment/{seq} 댓글 삭제 */
+    @DeleteMapping("/{seq}")
+    public ResponseEntity<DeleteCommentResponse> deleteComment(@PathVariable Integer seq){
+    	System.out.println("CommentController deleteComment " + new Date());
+    	 
+    	return ResponseEntity.ok(service.deleteComment(seq));
+    }
 }
