@@ -7,6 +7,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +21,7 @@ import com.demo.member.dto.request.JoinRequest;
 import com.demo.member.dto.request.LoginRequest;
 import com.demo.member.dto.response.JoinResponse;
 import com.demo.member.dto.response.LoginResponse;
+import com.demo.member.exception.MemberException;
 import com.demo.member.service.MemberService;
 
 @RestController
@@ -52,6 +56,28 @@ public class MemberController {
 		return ResponseEntity.ok(service.login(req));
 	}
 	
-	
+	/* 요청 DTO 검증 예외처리 핸들러 */
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+		System.out.println("UserController handleMethodArgumentNotValidException " + new Date());
+
+		BindingResult bs = e.getBindingResult();
+		StringBuilder sb = new StringBuilder();
+		bs.getFieldErrors().forEach(err -> {
+			sb.append(String.format("[%s]: %s.\n입력된 값: %s",
+						err.getField(), err.getDefaultMessage(), err.getRejectedValue()));
+		});
+
+		// Map 으로 보낸다면 프론트에서 사용하기 더 편리할 듯 !
+		return new ResponseEntity<>(sb.toString(), HttpStatus.BAD_REQUEST);
+	}
+
+	/* 사용자 관련 요청 예외처리 핸들러 */
+	@ExceptionHandler(MemberException.class)
+	public ResponseEntity<?> handleUserException(MemberException e) {
+		System.out.println("UserController handlerUserException " + new Date());
+
+		return new ResponseEntity<>(e.getMessage(), e.getStatus());
+	}
 	
 }

@@ -22,40 +22,28 @@ public class CommentService {
 	private CommentDao dao;
 
 	/* 댓글 조회 */
-	public CommentResponse getBbsCommentList(CommentRequest req) {
-		
-		CommentListParam param = new CommentListParam(req.getBbsSeq());
-		param.setPageParam(req.getPage(), 5);
-		 
-		List<Comment> commentList = dao.getCommentPageList(param);
-		Integer pageCnt = dao.getCommentCount(req.getBbsSeq());
-		
-		return new CommentResponse(commentList, pageCnt);
-	}
-	
-	/* 댓글 작성 */
-	public CreateCommentResponse createComment(Integer seq, CreateCommentRequest req) {
-		
-		CreateCommentParam param = new CreateCommentParam(seq, req);
-		dao.createComment(param);
-		
-		return new CreateCommentResponse(param.getSeq());
-	}
+    public CommentResponse getBbsCommentList(CommentRequest req) {
+        CommentListParam param = new CommentListParam(req.getBbsSeq());
+        param.setPageParam(req.getPage(), 5);
 
-	/* 댓글 삭제 */
-	public DeleteCommentResponse deleteComment(Integer seq) {
-		
-		Integer deletedRecordCount = dao.deleteComment(seq);
-		
-		return new DeleteCommentResponse(deletedRecordCount);
-	}
-	
-	
-	
-	
-	
-	
-	
+        List<Comment> commentList = dao.getCommentPageList(param);
+        Integer pageCnt = dao.getCommentCount(req.getBbsSeq());
+
+        return new CommentResponse(commentList, pageCnt);
+    }
+
+    /* 댓글 작성 */
+    public CreateCommentResponse createComment(Integer seq, CreateCommentRequest req) {
+        CreateCommentParam param = new CreateCommentParam(seq, req);
+        dao.createComment(param);
+        return new CreateCommentResponse(param.getSeq());
+    }
+
+    /* 댓글 삭제 */
+    public DeleteCommentResponse deleteComment(Integer seq) {
+        Integer deletedRecordCount = dao.deleteComment(seq);
+        return new DeleteCommentResponse(deletedRecordCount);
+    }
 	
 
 }

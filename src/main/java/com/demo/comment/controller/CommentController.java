@@ -28,18 +28,18 @@ public class CommentController {
 	@Autowired
 	private CommentService service;
 	
-    /* [GET] /comment?bbsSeq={seq}&page={page} 댓글 조회 */
-	@GetMapping
-	public ResponseEntity<CommentResponse> getBbsCommentList (@ModelAttribute CommentRequest req){
-		System.out.println("CommentController getBbsCommentList " + new Date());
-		
-		return ResponseEntity.ok(service.getBbsCommentList(req));
-	}
-	
-	
-	/* [POST] /comment?bbsSeq={seq} 댓글 작성 */
+	/* [GET] /comment?bbsSeq={seq}&page={page} 댓글 조회 */
+    @GetMapping
+    public ResponseEntity<CommentResponse> getBbsCommentList(@ModelAttribute CommentRequest req) {
+        System.out.println("CommentController getBbsCommentList " + new Date());
+
+        return ResponseEntity.ok(service.getBbsCommentList(req));
+    }
+
+    /* [POST] /comment?bbsSeq={seq} 댓글 작성 */
     @PostMapping
-    public ResponseEntity<CreateCommentResponse> createComment(@RequestParam Integer bbsSeq, @RequestBody CreateCommentRequest req) {
+    public ResponseEntity<CreateCommentResponse> createComment(@RequestParam Integer bbsSeq,
+        @RequestBody CreateCommentRequest req) {
         System.out.println("CommentController createComment " + new Date());
 
         return ResponseEntity.ok(service.createComment(bbsSeq, req));
@@ -47,9 +47,9 @@ public class CommentController {
 
     /* [DELETE] /comment/{seq} 댓글 삭제 */
     @DeleteMapping("/{seq}")
-    public ResponseEntity<DeleteCommentResponse> deleteComment(@PathVariable Integer seq){
-    	System.out.println("CommentController deleteComment " + new Date());
-    	 
-    	return ResponseEntity.ok(service.deleteComment(seq));
+    public ResponseEntity<DeleteCommentResponse> deleteComment(@PathVariable Integer seq) {
+        System.out.println("CommentController deleteComment " + new Date());
+
+        return ResponseEntity.ok(service.deleteComment(seq));
     }
 }

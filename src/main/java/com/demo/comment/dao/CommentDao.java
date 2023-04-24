@@ -14,11 +14,9 @@ import com.demo.comment.dto.param.CreateCommentParam;
 public interface CommentDao {
 	
 	List<Comment> getCommentPageList(CommentListParam param);
-	
 	Integer getCommentCount(Integer seq);
-
+	
 	void createComment(CreateCommentParam param);
-
 	Integer deleteComment(Integer seq);
 
 }
