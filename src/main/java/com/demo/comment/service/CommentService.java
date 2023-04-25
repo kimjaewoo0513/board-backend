@@ -12,8 +12,10 @@ import com.demo.comment.dto.param.CreateCommentParam;
 import com.demo.comment.dto.param.DeleteCommentResponse;
 import com.demo.comment.dto.request.CommentRequest;
 import com.demo.comment.dto.request.CreateCommentRequest;
+import com.demo.comment.dto.request.UpdateCommentRequest;
 import com.demo.comment.dto.response.CommentResponse;
 import com.demo.comment.dto.response.CreateCommentResponse;
+import com.demo.comment.dto.response.UpdateCommentResponse;
 
 @Service
 public class CommentService {
@@ -44,6 +46,12 @@ public class CommentService {
         Integer deletedRecordCount = dao.deleteComment(seq);
         return new DeleteCommentResponse(deletedRecordCount);
     }
+
+	public UpdateCommentResponse updateComment(String username, Integer seq, UpdateCommentRequest req) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
+    
 
 }

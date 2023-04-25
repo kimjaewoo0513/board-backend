@@ -53,6 +53,9 @@ public class WebSecurityConfig {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        
+        // TODO 로그아웃 기능 
+        
         return http.build();
     }
 
