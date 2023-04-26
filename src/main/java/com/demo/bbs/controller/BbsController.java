@@ -58,6 +58,14 @@ public class BbsController {
 		return ResponseEntity.ok(service.createBbs(req));
 	}
 	
+	/* [POST] /bbs/{parentSeq}/answer 게시글 답글 작성  */
+	@PostMapping("/{parentSeq}/answer")
+	public ResponseEntity<CreateBbsResponse> createBbsAnswer(@PathVariable Integer parentSeq, @RequestBody CreateBbsRequest req) {
+		System.out.println("BbsController createBbsAnswer " + new Date());
+
+		return ResponseEntity.ok(service.createBbsAnswer(parentSeq, req));
+	}
+	
 	/* [PATCH] /bbs/{seq} 게시글 수정  */
 	@PatchMapping("/{seq}")
 	public ResponseEntity<UpdateBbsResponse> updateBbs(@PathVariable Integer seq , @RequestBody UpdateBbsRequest req) {
@@ -71,6 +79,8 @@ public class BbsController {
 		System.out.println("BbsController deleteBbs " + new Date());
 		return ResponseEntity.ok(service.deleteBbs(seq));
 	}
+	
+	
 	
 	
 }

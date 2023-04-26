@@ -10,6 +10,7 @@ import com.demo.comment.domain.Comment;
 import com.demo.comment.dto.param.CommentListParam;
 import com.demo.comment.dto.param.CreateCommentParam;
 import com.demo.comment.dto.param.DeleteCommentResponse;
+import com.demo.comment.dto.param.UpdateCommentParam;
 import com.demo.comment.dto.request.CommentRequest;
 import com.demo.comment.dto.request.CreateCommentRequest;
 import com.demo.comment.dto.request.UpdateCommentRequest;
@@ -47,9 +48,21 @@ public class CommentService {
         return new DeleteCommentResponse(deletedRecordCount);
     }
 
-	public UpdateCommentResponse updateComment(String username, Integer seq, UpdateCommentRequest req) {
-		// TODO Auto-generated method stub
-		return null;
+	public UpdateCommentResponse updateComment(String id, Integer seq, UpdateCommentRequest req) {
+		Comment comment = dao.getCommentBySeq(seq);
+		
+		if(!comment.getId().equals(id)) {
+			System.out.println("작성자만 댓글을 수정할 수 있습니다.");
+			return null;
+		}
+		
+		Integer updatedRecordCount = dao.updateComment(new UpdateCommentParam(seq, req.getContent()));
+        if (updatedRecordCount != 1) {
+            System.out.println("댓글 수정에 실패했습니다.");
+            return null;
+        }
+		
+		return new UpdateCommentResponse(updatedRecordCount);
 	}
 	
     

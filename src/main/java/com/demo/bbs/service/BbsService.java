@@ -1,6 +1,7 @@
 package com.demo.bbs.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.demo.bbs.dao.BbsDao;
 import com.demo.bbs.domain.Bbs;
 import com.demo.bbs.dto.param.BbsCountParam;
 import com.demo.bbs.dto.param.BbsListParam;
+import com.demo.bbs.dto.param.CreateBbsAnswerParam;
 import com.demo.bbs.dto.param.CreateBbsParam;
 import com.demo.bbs.dto.param.UpdateBbsParam;
 import com.demo.bbs.dto.request.BbsListRequest;
@@ -66,6 +68,21 @@ public class BbsService {
 	public DeleteBbsResponse deleteBbs(Integer seq) {
 		Integer deletedRecordCount = dao.deleteBbs(seq);
 		return new DeleteBbsResponse(deletedRecordCount);
+	}
+
+	/* 답글 추가 */
+	public CreateBbsResponse createBbsAnswer(Integer parentSeq, CreateBbsRequest req) {
+		Integer updatedRecordCount = dao.updateBbsStep(parentSeq);
+		Integer bbsAnswerCount = dao.getBbsAnswerCount(parentSeq);
+		// TODO - 예외처리
+		if (!Objects.equals(updatedRecordCount, bbsAnswerCount)) {
+			System.out.println("BbsService createBbsAnswer: Fail update parent bbs step !!");
+			return null;
+		}
+
+		CreateBbsAnswerParam param = new CreateBbsAnswerParam(parentSeq, req);
+		dao.createBbsAnswer(param);
+		return new CreateBbsResponse(param.getSeq());
 	}
 
 }

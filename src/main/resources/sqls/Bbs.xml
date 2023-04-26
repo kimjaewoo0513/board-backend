@@ -103,4 +103,31 @@
 		where seq = #{seq}
 	</update>
 
+	<!-- 답글 작성 -->
+	<!-- 부모 게시글 step 업데이트 -->
+	<update id="updateBbsStep" parameterType="Integer">
+		UPDATE bbs
+		SET step = step + 1
+		WHERE ref = (SELECT ref FROM (SELECT ref FROM bbs a WHERE seq=#{parentSeq}) A)
+		AND step > (SELECT step FROM (SELECT step FROM bbs b WHERE seq=#{parentSeq}) B)
+	</update>
+
+	<!-- 부모 게시글 하위 답글 개수 조회 (step 업데이트 성공 여부 확인 휘함) -->
+	<select id="getBbsAnswerCount" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*)
+		FROM bbs
+		WHERE ref = (SELECT ref FROM (SELECT ref FROM bbs a WHERE seq=#{parentSeq}) A)
+		AND step > (SELECT step FROM (SELECT step FROM bbs b WHERE seq=#{parentSeq}) B)
+	</select>
+
+	<!-- 새로운 답글 추가 -->
+	<insert id="createBbsAnswer" parameterType="com.demo.bbs.dto.param.CreateBbsAnswerParam"
+					useGeneratedKeys="true" keyProperty="seq">
+		INSERT INTO bbs (id, ref, step, depth, title, content, created_at, del, read_count)
+		VALUES (#{id}, (SELECT ref FROM bbs a WHERE seq=#{parentSeq}),
+		        		(SELECT step FROM bbs b WHERE seq=#{parentSeq}) + 1,
+		       			(SELECT depth FROM bbs c WHERE seq=#{parentSeq}) + 1,
+		       			#{title}, #{content}, NOW(), 0, 0);
+	</insert>
+	
 </mapper>

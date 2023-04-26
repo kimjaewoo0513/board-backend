@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.demo.bbs.domain.Bbs;
 import com.demo.bbs.dto.param.BbsCountParam;
 import com.demo.bbs.dto.param.BbsListParam;
+import com.demo.bbs.dto.param.CreateBbsAnswerParam;
 import com.demo.bbs.dto.param.CreateBbsParam;
 import com.demo.bbs.dto.param.UpdateBbsParam;
 
@@ -32,5 +33,9 @@ public interface BbsDao {
 	
 	// 게시글 삭제
 	Integer deleteBbs(Integer seq);
+	
+	Integer updateBbsStep(Integer parentSeq);
+	Integer getBbsAnswerCount(Integer parentSeq);
+	void createBbsAnswer(CreateBbsAnswerParam param);
 
 }
