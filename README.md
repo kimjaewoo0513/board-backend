@@ -1,6 +1,6 @@
-게시판 프로젝트 입니다.
+##게시판 프로젝트 입니다.
 
-back-end로써 이루고자 한 목표는
+- back-end로써 이루고자 한 목표는
 spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그인 로그아웃 구현을 직접 해보기입니다.
 기본 crud 처리와 더불어 예외처리에 더욱 깊게 살펴 볼 수 있는 기회였습니다.
 
@@ -18,7 +18,7 @@ spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그�
 <img width="575" alt="backend-project-structure" src="">
 
 
-# 🕹 사용 기술
+# 사용 기술
 |기술|버전|
 |----|----|
 |Spring Boot|2.7.2|
@@ -101,4 +101,4 @@ spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그�
 # API 명세서
 HTTP 메서드를 통해 행위를 명시할 수 있도록 RESTful 방식으로 설계했습니다. <br/><br/>
 
-# 🕸 ERD 설계
+# ERD 설계
