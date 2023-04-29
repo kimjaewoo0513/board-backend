@@ -4,7 +4,7 @@ back-end로써 이루고자 한 목표는
 spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그인 로그아웃 구현을 직접 해보기입니다.
 기본 crud 처리와 더불어 예외처리에 더욱 깊게 살펴 볼 수 있는 기회였습니다.
 
-# 📚 목차
+# 목차
 * [패키지 구조](#-프로젝트-구조)
 * [사용 기술](#-사용-기술)
 * [기능](#-구현-기능)
@@ -14,13 +14,11 @@ spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그�
 * [트러블슈팅](#-트러블슈팅)
 
 
-# 🎃 프로젝트 구조
-### 📌 Backend
+# 프로젝트 구조
 <img width="575" alt="backend-project-structure" src="">
 
 
 # 🕹 사용 기술
-### 📌 Backend
 |기술|버전|
 |----|----|
 |Spring Boot|2.7.2|
@@ -31,7 +29,7 @@ spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그�
 |MySQL Connector J|8.0.28|
 
 
-# 🎢 구현 기능
+# 구현 기능
 * 게시판 기능
   * 모든 게시글 및 특정 게시글 조회
   * 게시글 검색 (제목, 내용, 작성자)
@@ -49,7 +47,7 @@ spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그�
   * 로그인/로그아웃
   
 
-# 🍭 기능 실행화면
+# 기능 실행화면
 
 ## 게시판 기능
 ### 모든 게시글 및 특정 게시글 조회
