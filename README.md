@@ -15,7 +15,6 @@ spring boot 프레임워크를 통해 spring security + jwt를 이용한 로그�
 
 
 # 프로젝트 구조
-<img width="575" alt="backend-project-structure" src="">
 
 
 # 사용 기술
