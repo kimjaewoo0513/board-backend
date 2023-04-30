@@ -47,12 +47,14 @@ public class WebSecurityConfig {
             .antMatchers(HttpMethod.DELETE, "/bbs", "/comment").authenticated()
             .anyRequest().permitAll();
 
-        http.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+        http
+        	.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        http
+        	.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         
         // TODO 로그아웃 기능 
         
