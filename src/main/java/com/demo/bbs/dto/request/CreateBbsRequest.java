@@ -6,7 +6,7 @@ public class CreateBbsRequest {
     private String title;
     private String content;
 
-    public String getId() {
+	public String getId() {
         return id;
     }
 
